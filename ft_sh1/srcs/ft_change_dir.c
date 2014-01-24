@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 18:01:58 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/24 16:20:39 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/24 18:46:46 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_change_dir(t_ex *ex_info)
 
 	buf = NULL;
 	buf = getcwd(buf, BUFF_SIZE);
-	//if (ft_strcmp(ex_info->argv[1], "..") == 0)
-		//ft_go_back(buf);
+	if (ft_strcmp(ex_info->argv[1], "~") == 0)
+		buf = ft_strjoin(ex_info->env[3] + 5, ex_info->argv[1] + 1);
 	if (ft_strcmp(ex_info->argv[1], "-") == 0)
 		ft_go_previous(ex_info);
 	else

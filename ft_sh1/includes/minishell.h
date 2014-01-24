@@ -38,7 +38,7 @@ char	**ft_get_paths(char **tab);
 int		ft_count_c(char *str, char c);
 void	ft_execute(t_ex *ex_info);
 void	ft_ex_command(t_ex *ex_info);
-void	ft_get_command(t_ex *ex_info, char **input);
+int		ft_get_command(t_ex *ex_info, char **input);
 void	ft_change_dir(t_ex *ex_info);
 void	ft_go_to(char *buf, char *dir);
 void	ft_go_home();
