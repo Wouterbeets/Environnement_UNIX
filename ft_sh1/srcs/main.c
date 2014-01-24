@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:50:41 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/23 12:10:29 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/24 12:38:32 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		main(int argc, char **argv, char **env)
 	ex_info.env = env;
 	while (1)
 	{
+		ft_putstr(ex_info.env[4] + 5);
 		ft_putstr("$>");
 		ft_get_command(&ex_info, &input);
 		if (ft_strcmp(input, "exit") == 0)

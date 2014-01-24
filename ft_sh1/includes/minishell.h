@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -23,6 +24,16 @@ typedef struct		s_ex
 	char	**env;
 }			t_ex;
 
+typedef struct		s_read
+{
+int					size;
+int					index;
+char				*read;
+int					fd;
+struct s_read		*next;
+}					t_read;
+
+int					get_next_line(int const fd, char **line);
 char	**ft_get_paths(char **tab);
 int		ft_count_c(char *str, char c);
 void	ft_execute(t_ex *ex_info);
@@ -33,4 +44,6 @@ void	ft_go_back(char *buf);
 void	ft_go_to(char *buf, char *dir);
 void	ft_go_home();
 void	ft_executable(t_ex *ex_info);
+void	ft_error(t_ex *ex_info);
+
 #endif
