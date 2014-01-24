@@ -40,10 +40,10 @@ void	ft_execute(t_ex *ex_info);
 void	ft_ex_command(t_ex *ex_info);
 void	ft_get_command(t_ex *ex_info, char **input);
 void	ft_change_dir(t_ex *ex_info);
-void	ft_go_back(char *buf);
 void	ft_go_to(char *buf, char *dir);
 void	ft_go_home();
 void	ft_executable(t_ex *ex_info);
 void	ft_error(t_ex *ex_info);
+void	ft_go_previous(t_ex *ex_info);
 
 #endif

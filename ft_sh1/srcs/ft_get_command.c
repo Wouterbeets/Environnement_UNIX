@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 12:40:43 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/22 14:21:40 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/24 16:26:03 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_get_command(t_ex *ex_info, char **input)
 	char	**tab;
 
 	ret = get_next_line(0, input);
+	*input = ft_strtrim(*input);
 	tab = ft_strsplit(*input, ' ');
 	ex_info->argv = tab;
 }
