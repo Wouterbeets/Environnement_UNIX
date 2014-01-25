@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:50:41 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/24 18:31:03 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/25 14:17:06 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		main(int argc, char **argv, char **env)
 	argc = 0;
 	argv = 0;
 	ex_info.env = env;
-	while (1)
+	ft_opening(ex_info);
+	while (42)
 	{
 		ft_putstr(ex_info.env[4] + 5);
 		ft_putstr("$>");
@@ -30,7 +31,7 @@ int		main(int argc, char **argv, char **env)
 				exit(0);
 			if (ft_strcmp(input, "cd") == 0)
 				ft_go_home(&ex_info);
-			else if ((ft_strcmp(ex_info.argv[0], "cd") == 0) 
+			else if ((ft_strcmp(ex_info.argv[0], "cd") == 0)
 					|| (ft_strcmp(ex_info.argv[0], "~") == 0))
 				ft_change_dir(&ex_info);
 			else

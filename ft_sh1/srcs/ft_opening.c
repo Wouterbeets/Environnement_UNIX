@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ex_command.c                                    :+:      :+:    :+:   */
+/*   ft_opening.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/22 12:42:01 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/25 12:29:35 by tleroy           ###   ########.fr       */
+/*   Created: 2014/01/25 12:14:28 by tleroy            #+#    #+#             */
+/*   Updated: 2014/01/25 14:18:19 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_ex_command(t_ex *ex_info)
+void	ft_opening(t_ex ex_info)
 {
-	pid_t	pid;
+	int		fd;
 	int		ret;
+	char	*line;
 
-	pid = fork();
-	if (pid == 0)
+	fd = open("opening", O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		ft_execute(ex_info);
-		ft_error(ex_info);
-		exit(0);
-	}
-	if (pid > 0)
-		wait(&ret);
-}
-
-void	ft_error(t_ex *ex_info)
-{
-	if (ex_info->argv[0][0] == '.')
-	{
-		ft_putstr("no such file or directory: ");
-		ft_putstr(ex_info->argv[0]);
+		ft_putstr(line);
 		ft_putstr("\n");
+		free(line);
 	}
-	else
-	{
-		ft_putstr("command not found: ");
-		ft_putstr(ex_info->argv[0]);
-		ft_putstr("\n");
-	}
+	close(fd);
+	ft_putstr("Welcome ");
+	ft_putstr(ex_info.env[4] + 5);
+	ft_putstr("!\n");
 }

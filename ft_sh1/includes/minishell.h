@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # include "libft.h"
 
 typedef struct		s_ex
@@ -33,7 +34,7 @@ int					fd;
 struct s_read		*next;
 }					t_read;
 
-int					get_next_line(int const fd, char **line);
+int		get_next_line(int const fd, char **line);
 char	**ft_get_paths(char **tab);
 int		ft_count_c(char *str, char c);
 void	ft_execute(t_ex *ex_info);
@@ -45,5 +46,8 @@ void	ft_go_home();
 void	ft_executable(t_ex *ex_info);
 void	ft_error(t_ex *ex_info);
 void	ft_go_previous(t_ex *ex_info);
+void	ft_path_tilde(t_ex *ex_info);
+void	ft_update_env(t_ex *ex_info);
+void	ft_opening(t_ex ex_info);
 
 #endif

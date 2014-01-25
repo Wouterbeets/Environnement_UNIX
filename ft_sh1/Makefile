@@ -6,7 +6,7 @@
 #    By: wbeets <wbeets@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/04 16:27:25 by wbeets            #+#    #+#              #
-#    Updated: 2014/01/24 12:24:21 by tleroy           ###   ########.fr        #
+#    Updated: 2014/01/25 13:52:20 by tleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ FILES	= main.c			\
 		  ft_get_path.c		\
 		  ft_change_dir.c	\
 		  ft_go_home.c		\
-		  get_next_line.c
+		  get_next_line.c	\
+		  ft_update_env.c	\
+		  ft_opening.c
 SRCS		= $(addprefix srcs/, $(FILES))
 OBJS		= $(SRCS:srcs/%.c=.objs/%.o)
 FLAGS	= -Wall -Werror -Wextra
