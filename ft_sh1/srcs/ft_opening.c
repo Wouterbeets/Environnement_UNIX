@@ -6,13 +6,13 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 12:14:28 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/25 14:18:19 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/25 18:17:47 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_opening(t_ex ex_info)
+void	ft_opening(t_ex *ex_info)
 {
 	int		fd;
 	int		ret;
@@ -26,7 +26,7 @@ void	ft_opening(t_ex ex_info)
 		free(line);
 	}
 	close(fd);
-	ft_putstr("Welcome ");
-	ft_putstr(ex_info.env[4] + 5);
-	ft_putstr("!\n");
+	ft_putstr("\t   Welcome ");
+	ft_putstr(ft_search(ex_info, "USER=") + 5);
+	ft_putstr("!\n\n");
 }

@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 18:01:58 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/25 13:25:52 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/25 18:24:14 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 void	ft_change_dir(t_ex *ex_info)
 {
 	char	*buf;
+	int		ret;
 
+	ret = 0;
 	buf = NULL;
 	buf = getcwd(buf, BUFF_SIZE);
 	if (ex_info->argv[1][0] == '~')
-		ft_path_tilde(ex_info);
+		ret = ft_path_tilde(ex_info);
 	else if (ft_strcmp(ex_info->argv[1], "-") == 0)
-		ft_go_previous(ex_info);
+		ret = ft_go_previous(ex_info);
 	else
-		ft_go_to(buf, ex_info->argv[1]);
-	ft_update_env(ex_info);
+		ret = ft_go_to(buf, ex_info->argv[1]);
+	if (ret == 0)
+		ex_info = ft_update_env(ex_info);
 }
 
-void	ft_go_to(char *buf, char *dir)
+int		ft_go_to(char *buf, char *dir)
 {
 	int		i;
 	char	*path;
@@ -45,26 +48,29 @@ void	ft_go_to(char *buf, char *dir)
 		ft_putstr(dir);
 		ft_putstr("\n");
 	}
+	return (ret);
 }
 
-void	ft_go_previous(t_ex *ex_info)
+int		ft_go_previous(t_ex *ex_info)
 {
 	int		ret;
 
-	ft_putstr(ex_info->env[20] + 7);
-	ft_putstr("\n");
-	ret = chdir(ex_info->env[20] + 7);
+	//ft_putstr(ft_search(ex_info, "OLDPWD=") + 7);
+	//ft_putstr("\n");
+	ret = chdir(ft_search(ex_info, "OLDPWD=") + 7);
+	return (ret);
 }
 
-void	ft_path_tilde(t_ex *ex_info)
+int		ft_path_tilde(t_ex *ex_info)
 {
 	int		ret;
 	int		i;
 	char	*path;
 
-	i = ft_strlen(ex_info->env[3] + 5) + ft_strlen(ex_info->argv[1] + 1);
+	i = ft_strlen(ft_search(ex_info, "HOME=") + 5);
+	i = i + ft_strlen(ex_info->argv[1] + 1);
 	path = (char *)malloc(i * sizeof(char));
-	path = ft_strjoin(ex_info->env[3] + 5, ex_info->argv[1] + 1);
+	path = ft_strjoin(ft_search(ex_info, "HOME=") + 5, ex_info->argv[1] + 1);
 	ret = chdir(path);
 	if (ret == -1)
 	{
@@ -72,4 +78,5 @@ void	ft_path_tilde(t_ex *ex_info)
 		ft_putstr(path);
 		ft_putstr("\n");
 	}
+	return (ret);
 }

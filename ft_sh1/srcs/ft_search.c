@@ -1,21 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_go_home.c                                       :+:      :+:    :+:   */
+/*   ft_search.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/23 11:57:35 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/25 18:01:40 by tleroy           ###   ########.fr       */
+/*   Created: 2014/01/25 18:28:21 by tleroy            #+#    #+#             */
+/*   Updated: 2014/01/25 19:26:21 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_go_home(t_ex *ex_info)
+char	*ft_search(t_ex *ex_info, char *str)
 {
-	int		ret;
+	int		i;
+	int		j;
+	int		k;
 
-	ret = chdir(ft_search(ex_info, "HOME=") + 5);
-	//ex_info = ft_update_env(ex_info);
+	i = 0;
+	j = 0;
+	k = 0;
+	while (ex_info->env[k] != '\0')
+	{
+		while (ex_info->env[k][i] != '\0')
+		{
+			if (str[j] == '\0')
+				return (ex_info->env[k]);
+			if (str[j] == ex_info->env[k][i])
+				j++;
+			else
+				j = 0;
+			i++;
+		}
+		i = 0;
+		k++;
+	}
+	return (0);
 }
