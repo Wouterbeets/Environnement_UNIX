@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:50:41 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/25 18:37:38 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/26 18:42:35 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ int		main(int argc, char **argv, char **env)
 	argc = 0;
 	argv = 0;
 	ex_info.env = env;
+	ft_putendl(ex_info.env[ft_search(&ex_info, "USER=")] + 5);
 	ft_opening(&ex_info);
 	while (42)
 	{
-		ft_putstr(ft_search(&ex_info, "USER=") + 5);
+		ft_putstr(ex_info.env[ft_search(&ex_info, "USER=")] + 5);
 		ft_putstr("$>");
 		if (ft_get_command(&ex_info, &input) == 0)
 		{

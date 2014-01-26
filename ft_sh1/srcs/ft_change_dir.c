@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 18:01:58 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/25 18:24:14 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/26 18:58:40 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_change_dir(t_ex *ex_info)
 	else
 		ret = ft_go_to(buf, ex_info->argv[1]);
 	if (ret == 0)
-		ex_info = ft_update_env(ex_info);
+		ft_update_env(ex_info);
 }
 
 int		ft_go_to(char *buf, char *dir)
@@ -55,9 +55,8 @@ int		ft_go_previous(t_ex *ex_info)
 {
 	int		ret;
 
-	//ft_putstr(ft_search(ex_info, "OLDPWD=") + 7);
-	//ft_putstr("\n");
-	ret = chdir(ft_search(ex_info, "OLDPWD=") + 7);
+	ret = chdir(ex_info->env[ft_search(ex_info, "OLDPWD=")] + 7);
+	ft_putendl(ex_info->env[ft_search(ex_info, "OLDPWD=")] + 7);
 	return (ret);
 }
 
@@ -67,10 +66,11 @@ int		ft_path_tilde(t_ex *ex_info)
 	int		i;
 	char	*path;
 
-	i = ft_strlen(ft_search(ex_info, "HOME=") + 5);
+	i = ft_strlen(ex_info->env[ft_search(ex_info, "HOME=")] + 5);
 	i = i + ft_strlen(ex_info->argv[1] + 1);
 	path = (char *)malloc(i * sizeof(char));
-	path = ft_strjoin(ft_search(ex_info, "HOME=") + 5, ex_info->argv[1] + 1);
+	path = ft_strjoin(ex_info->env[ft_search(ex_info, "HOME=")]
+			+ 5, ex_info->argv[1] + 1);
 	ret = chdir(path);
 	if (ret == -1)
 	{

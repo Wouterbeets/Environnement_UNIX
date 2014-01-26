@@ -6,7 +6,7 @@
 /*   By: tleroy <tleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 12:43:07 by tleroy            #+#    #+#             */
-/*   Updated: 2014/01/24 12:27:00 by tleroy           ###   ########.fr       */
+/*   Updated: 2014/01/26 16:08:33 by tleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_execute(t_ex *ex_info)
 	int		i;
 
 	i = 0;
-	paths = ft_get_paths(ex_info->env);
+	paths = ft_get_paths(ex_info);
 	while (paths[i] != '\0')
 	{
 		tmp = ft_strjoin(paths[i], ex_info->argv[0]);
